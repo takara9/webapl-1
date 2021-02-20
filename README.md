@@ -28,5 +28,23 @@ docker push
 
 
 
+## パブリック GitHub からクローンして、プライベート GitLab へプッシュする方法
+
+~~~
+git clone https://github.com/takara9/webapl-1
+cd webapl-1
+
+git remote -v
+origin	ssh://git@github.com/takara9/webapl-1 (fetch)
+origin	ssh://git@github.com/takara9/webapl-1 (push)
+
+git remote rename origin old-origin
+git remote -v
+old-origin	ssh://git@github.com/takara9/webapl-1 (fetch)
+old-origin	ssh://git@github.com/takara9/webapl-1 (push)
+
+git remote add origin ssh://git@gitlab.labo.local:2224/tkr/webapl-1.git
+git push -u origin --all
+~~~
 
 
