@@ -48,3 +48,16 @@ git push -u origin --all
 ~~~
 
 
+## パブリック GitHub へもPushする方法
+
+~~~
+git push -u old-origin
+
+git remote -v
+old-origin	https://github.com/takara9/webapl-1 (fetch)
+old-origin	https://github.com/takara9/webapl-1 (push)
+origin	ssh://git@gitlab.labo.local:2224/tkr/webapl-1.git (fetch)
+origin	ssh://git@gitlab.labo.local:2224/tkr/webapl-1.git (push)
+~~~
+
+
