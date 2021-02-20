@@ -129,3 +129,20 @@ replicaset.apps/webapl1-768f6779cf   1         1         1       6m28s
 ~~~
 
 
+
+## プライベートレジストリに登録、K8sへのデプロイ
+
+プライベートプロジェクトのタグを付与して、レジストリへ登録する。
+
+~~~
+docker tag webapl1:1.0 harbor.labo.local/x/webapl1:1.0
+docker push harbor.labo.local/x/webapl1:1.0
+~~~
+
+アクセスに必要なシークレットを設定する。
+
+~~~
+kubectl create secret docker-registry regcred --docker-server=harbor.labo.local --docker-username=tkr --docker-password='***********' --docker-email='tkr@labo.local'
+~~~
+
+
