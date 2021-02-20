@@ -1,10 +1,16 @@
 # webapl-1
-Simple Web Application 
 
+挿絵の入ったウェブページを返すだけのシンプルなアプリケーションです。
 
+1. コンテナのビルド
+1. プライベート コンテナレジストリサービスへの登録
+1. パブリック コンテナレジストリサービスへの登録
+1. コードリポジトリ パブリックGitHubから、プライベートGitLabへ登録
+1. パブリック GitHub へもPushする方法
+1. 両方のコードリポジトリへ反映させる場合
+1. Kubernetesへデプロイする方法
 
-
-## ビルド方法
+## コンテナのビルド方法
 
 ~~~
 docker build -t webapl1:1.0 .
@@ -29,6 +35,8 @@ docker images
 docker tag webapl1:1.0 harbor.labo.local/tkr/webapl1:1.0
 docker push harbor.labo.local/tkr/webapl1:1.0
 ~~~
+
+
 
 ## Docker Hub レジストリサービスへ登録
 
@@ -90,6 +98,34 @@ git add README.md
 git commit -m "update "
 git push -u origin --all
 git push -u old-origin --all
+~~~
+
+
+## Kubernetesへデプロイする方法
+
+デプロイ後に、service/webapl1 列の EXTERNAL-IPにアクセスすることで、ウェブページへアクセスできる。
+
+
+
+~~~
+cd webapl-1/k8s-yaml
+
+kubectl apply -f webapl1.yaml
+
+
+kubectl get all
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/webapl1-768f6779cf-x2xx5   1/1     Running   0          6m28s
+
+NAME                 TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
+service/kubernetes   ClusterIP      10.32.0.1     <none>          443/TCP        15h
+service/webapl1      LoadBalancer   10.32.0.233   192.168.1.183   80:31525/TCP   6m28s
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/webapl1   1/1     1            1           6m28s
+
+NAME                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/webapl1-768f6779cf   1         1         1       6m28s
 ~~~
 
 
