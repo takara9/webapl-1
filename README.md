@@ -6,25 +6,40 @@ Simple Web Application
 
 ## ビルド方法
 
-{dockerhub_userid}の部分は、自分のDocker Hub のIdで置き換えてくださいね。
-
 ~~~
-docker build -t {dockerhub_userid}/webapl1:1.0 .
+docker build -t webapl1:1.0 .
 ~~~
 
 ## ローカル環境でのテストやデバッグ
 
 ~~~
-docker run -it -p 3000:3000 --rm --name test {dockerhub_userid}/webapl1:1.0
+docker run -it -p 3000:3000 --rm --name test webapl1:1.0
 ~~~
 
 
-## Docker Hubへの登録
+## Harbor のコンテナレジストリへ登録
+
+harborレジストリへのdocker login は、毎回実施する必要は無いので、省略可能できます。
+docker imagesコマンドも、対象となるイメージの存在を確認するためなので、省略可能です。
+タグの付与は、登録対象のレジストリごとに必要です。
 
 ~~~
-docker login
-docker push
+docker login -u tkr harbor.labo.local
+docker images
+docker tag webapl1:1.0 harbor.labo.local/tkr/webapl1:1.0
+docker push harbor.labo.local/tkr/webapl1:1.0
 ~~~
+
+## Docker Hub レジストリサービスへ登録
+
+Docker Hubへ登録するときは、サーバー名は省略可能で、ユーザー名だけで指定できます。
+もちろん、アカウントを持っていなければなりません。
+
+~~~
+docker tag webapl1:1.0 maho/webapl1:1.0
+docker push maho/webapl1:1.0
+~~~
+
 
 
 
