@@ -53,7 +53,7 @@ git push -u origin --all
 
 ## パブリック GitHub へもPushする方法
 
-ローカルだけではんく、パブリックGitHubへ変更を反映するには、old-origin へプッシュすれば良い
+ローカルだけではなく、パブリックGitHubへ変更を反映するには、old-origin へプッシュすれば良い
 
 ~~~
 git push -u old-origin
@@ -63,6 +63,13 @@ old-origin	https://github.com/takara9/webapl-1 (fetch)
 old-origin	https://github.com/takara9/webapl-1 (push)
 origin	ssh://git@gitlab.labo.local:2224/tkr/webapl-1.git (fetch)
 origin	ssh://git@gitlab.labo.local:2224/tkr/webapl-1.git (push)
+~~~
+
+
+## 全てに反映させる場合
+
+~~~
+git push --all
 ~~~
 
 
