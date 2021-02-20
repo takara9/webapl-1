@@ -30,6 +30,9 @@ docker push
 
 ## パブリック GitHub からクローンして、プライベート GitLab へプッシュする方法
 
+git コマンドで、ローカルのGitLabにアクセスできる設定を実施しておく。
+それから、以下を実施することで、ローカルのGitLabを利用できる。
+
 ~~~
 git clone https://github.com/takara9/webapl-1
 cd webapl-1
@@ -49,6 +52,8 @@ git push -u origin --all
 
 
 ## パブリック GitHub へもPushする方法
+
+ローカルだけではんく、パブリックGitHubへ変更を反映するには、old-origin へプッシュすれば良い
 
 ~~~
 git push -u old-origin
