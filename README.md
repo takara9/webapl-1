@@ -145,4 +145,27 @@ docker push harbor.labo.local/x/webapl1:1.0
 kubectl create secret docker-registry regcred --docker-server=harbor.labo.local --docker-username=tkr --docker-password='***********' --docker-email='tkr@labo.local'
 ~~~
 
+レジストリのクレデンシャル情報を追加したYAMLを適用する。
+
+~~~
+cd k8s-yaml
+kubectl apply -f webapl1-private.yaml
+~~~
+
+## Jenkins,GitLab,Harborの連動
+
+Jenkinsでジョブをスタートすると、GitLabからクローンして、コンテナをビルド、Harborへプッシュ、続いて、K8sへデプロイする。仕掛けを作成する。
+
+Jenkinsのブラウザ画面 https://jenkins.labo.local/ にログインする。
+
+
+Jenkinsの管理 -> プラグインマネージャー -> 利用可能 -> GitLab をサーチ
+GitLabプラグインをインストールして、Jenkins再起動を選択
+
+
+新規ジョブ作成
+名前 webapl-1
+パイプライン
+
+https://gitlab.labo.local/tkr/webapl-1
 
