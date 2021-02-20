@@ -69,7 +69,12 @@ origin	ssh://git@gitlab.labo.local:2224/tkr/webapl-1.git (push)
 ## 全てに反映させる場合
 
 ~~~
+cd webapl-1
+git status
+git add README.md 
+git commit -m "update "
 git push --all
+git push -u old-origin --all
 ~~~
 
 
