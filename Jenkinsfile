@@ -3,6 +3,7 @@ pipeline {
   environment {
     registry = "harbor.labo.local/tkr/webapl1"
     dockerImage = ""
+    KUBECONFIG = credentials('kubeconfig')    
   }
 
   agent any
@@ -31,6 +32,17 @@ pipeline {
         }
       }
     }
+
+    stage('K8sクラスタへのデプロイ') {
+      steps {
+        script {
+          sh 'kubectl cluster-info --kubeconfig $KUBECONFIG'
+          sh 'sed s/__BUILDNUMBER__/$BUILD_NUMBER/ webapl1.yaml > webapl1-build.yaml'
+          sh 'kubectl apply -f webapl1-build.yaml --kubeconfig $KUBECONFIG'
+        }
+      }
+    }
+
   }
 
 }

@@ -32,4 +32,5 @@ spec:
     spec:
       containers:
       - name: webapl1
-        image: harbor.labo.local/tkr/webapl1:1.0
+        image: harbor.labo.local/tkr/webapl1:__BUILDNUMBER__
+        imagePullPolicy: Always

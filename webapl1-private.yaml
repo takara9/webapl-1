@@ -33,5 +33,6 @@ spec:
       containers:
       - name: webapl1
         image: harbor.labo.local/x/webapl1:1.0
+        imagePullPolicy: Always
       imagePullSecrets:
       - name: regcred
