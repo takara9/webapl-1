@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    registry = "harbor.labs.local/tkr/webapl1"
+    registry = "harbor.labo.local/tkr/webapl1"
     dockerImage = ""
   }
 
