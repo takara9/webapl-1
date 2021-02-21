@@ -25,7 +25,7 @@ pipeline {
     stage('コンテナレジストリへプッシュ') {
       steps {
         script {
-          docker.withRegistry("https://harbor.labs.local/tkr/","harborproj1") {
+          docker.withRegistry("https://harbor.labo.local/tkr/","harbor.labo.local") {
             dockerImage.push()
           }
         }
