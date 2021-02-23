@@ -169,3 +169,5 @@ GitLabプラグインをインストールして、Jenkins再起動を選択
 
 https://gitlab.labo.local/tkr/webapl-1
 
+
+
