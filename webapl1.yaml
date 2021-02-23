@@ -34,3 +34,5 @@ spec:
       - name: webapl1
         image: harbor.labo.local/tkr/webapl1:__BUILDNUMBER__
         imagePullPolicy: Always
+      imagePullSecrets:
+      - name: regcred
