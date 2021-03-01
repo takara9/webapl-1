@@ -36,6 +36,17 @@ docker tag webapl1:1.0 harbor.labo.local/tkr/webapl1:1.0
 docker push harbor.labo.local/tkr/webapl1:1.0
 ~~~
 
+docker login で harborレジストリへログインする場合、harborのサイト証明書を署名した
+認証局（CA)の証明書が、macOSのキーチェーンに登録され、Docker Desktopが再起動されて
+いる必要があります。これが実施されていないと docker login は、以下のエラーを表示して
+ログインは失敗します。
+
+~~~
+Error response from daemon: Get https://harbor.labo.local/v2/: x509: certificate signed by unknown authority
+~~~
+
+
+
 
 
 ## Docker Hub レジストリサービスへ登録
