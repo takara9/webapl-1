@@ -15,7 +15,15 @@
 
 ## リンク情報
 
-GitHubリポジトリ: https://github.com/takara9/webapl-1
+* GitHubリポジトリ: https://github.com/takara9/webapl-1
+* サブモジュールリンク: https://github.com/takara9/marmot-k8s/tree/master/manifests/webapl-01-nodejs
+
+サブモジュールの更新方法
+
+~~~
+git submodule update -i
+~~~
+
 
 
 
