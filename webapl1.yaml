@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: webapl1
-        image: harbor.labo.local/tkr/webapl1:__BUILDNUMBER__
+        image: harbor.labo.local/k8s/webapl-1:__BUILDNUMBER__
         imagePullPolicy: Always
       imagePullSecrets:
       - name: regcred

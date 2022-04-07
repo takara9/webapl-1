@@ -1,17 +1,17 @@
 pipeline {
 
   environment {
-    registry = "harbor.labo.local/tkr/webapl1"
+    registry = "harbor.labo.local/k8s/webapl-1"
     dockerImage = ""
-    KUBECONFIG = credentials('kubeconfig')    
   }
 
   agent any
   stages {
-    stage("test") {
+    stage("環境確認") {
       steps {
               sh 'ls -al'
               sh 'env'
+	      sh 'pwd'
       }
     }
 
@@ -26,7 +26,7 @@ pipeline {
     stage('コンテナレジストリへプッシュ') {
       steps {
         script {
-          docker.withRegistry("https://harbor.labo.local","harbor.labo.local") {
+          docker.withRegistry("https://harbor.labo.local","harbor-login") {
             dockerImage.push()
           }
         }
@@ -34,16 +34,17 @@ pipeline {
     }
 
     stage('K8sクラスタへのデプロイ') {
-      steps {
-        script {
-          sh 'kubectl cluster-info --kubeconfig $KUBECONFIG'
+      steps {    
+        withKubeConfig([credentialsId: 'k8s1-test']) {
+	  sh 'env'
+          sh 'kubectl cluster-info'
           sh 'sed s/__BUILDNUMBER__/$BUILD_NUMBER/ webapl1.yaml > webapl1-build.yaml'
-          sh 'kubectl apply -f webapl1-build.yaml --kubeconfig $KUBECONFIG'
+          sh 'kubectl apply -f webapl1-build.yaml'
+          sh 'kubectl get all'
+	  sh 'kubectl get svc'
         }
       }
     }
-
   }
-
 }
 
